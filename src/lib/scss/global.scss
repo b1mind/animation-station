@@ -1,0 +1,87 @@
+:root {
+	//tokens
+	//todo hsl token colors so you can split opacity easier
+	--purple-0: blueviolet;
+	--purple-1: #896ffb;
+	--black-0: #121212;
+	--black-1: #1b1b1b;
+	--white-0: #fafafa;
+
+	//contextual tokens
+	--clr-background: var(--black-1);
+	--clr-background-dark: var(--black-0);
+	--clr-primary: var(--purple-1);
+	--clr-primary-dark: var(--purple-0);
+	--clr-font: var(--white-0);
+	--font-med: 1.5rem;
+	--font-lrg: 2rem;
+	--gutter-sml: 12px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+//small resets and defaults
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	display: grid;
+	min-height: 100%;
+	//height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	color: var(--clr-font);
+	background-color: var(--clr-background);
+}
+
+a {
+	color: var(--clr-primary);
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.1;
+}
+
+p {
+	line-height: 1.5;
+}
+
+input {
+	font-family: inherit;
+}
+
+// utils
+
+//maybe we make a slot component?
+.wrap-main {
+	display: grid;
+	min-height: 100%;
+	//todo breakout margins and tie into $media vars for main content max
+	grid-template-columns:
+		minmax(var(--gutter-sml), 1fr)
+		minmax(0, 56rem)
+		minmax(var(--gutter-sml), 1fr);
+
+	grid-template-rows: auto 1fr auto;
+	grid-template-areas: '. content .';
+
+	//todo util for this and full/mid/sml look at example
+	& > * {
+		grid-column: content;
+	}
+}
+
+.wrap {
+	@extend .wrap-main;
+	grid-template-rows: unset;
+}

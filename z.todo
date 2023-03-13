@@ -1,0 +1,8 @@
+// Template todos and wishlist
+Todo:
+	☐ clean up inline todos
+	☐ default icon sprite.svg
+
+WishList:
+	☐ img optimizer
+	☐ better font solution
