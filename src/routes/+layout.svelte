@@ -1,7 +1,9 @@
 <script>
-	import '$lib/scss/global.scss'
 	import Nav from './Nav.svelte'
 	import Footer from './Footer.svelte'
+
+	import '$lib/scss/global.scss'
+	import TransitionPage from './TransitionPage.svelte'
 </script>
 
 <svelte:head>
@@ -11,12 +13,14 @@
 
 <div class="wrap-main">
 	<header>
-		<b>Logo</b>
+		<b><a href="/">Logo</a></b>
 		<Nav />
 	</header>
 
 	<main>
-		<slot />
+		<TransitionPage>
+			<slot />
+		</TransitionPage>
 	</main>
 
 	<footer>
@@ -27,6 +31,7 @@
 <style lang="scss">
 	//wish we had subgrid... somedayTM for now inherit
 	main {
+		position: relative;
 		grid-column: 1 / 4;
 		display: grid;
 		grid-template-columns: inherit;
