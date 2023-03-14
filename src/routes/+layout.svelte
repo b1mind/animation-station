@@ -1,9 +1,13 @@
 <script>
+	// import { page } from '$app/stores'
+
 	import Nav from './Nav.svelte'
 	import Footer from './Footer.svelte'
+	import TransitionPage from './TransitionPage.svelte'
 
 	import '$lib/scss/global.scss'
-	import TransitionPage from './TransitionPage.svelte'
+
+	// $: currentUrl = $page.url
 </script>
 
 <svelte:head>
@@ -18,9 +22,11 @@
 	</header>
 
 	<main>
+		<!-- {#key currentUrl} -->
 		<TransitionPage>
 			<slot />
 		</TransitionPage>
+		<!-- {/key} -->
 	</main>
 
 	<footer>

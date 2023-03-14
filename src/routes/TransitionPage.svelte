@@ -5,31 +5,21 @@
 	let currentUrl
 
 	beforeNavigate((e) => {
-		currentUrl = e.from.route
-	})
-
-	afterNavigate((e) => {
-		// currentUrl = e.to.route
-		console.log(currentUrl)
+		currentUrl = e?.to?.url.pathname
 	})
 </script>
 
-{#key currentUrl}
-	<div class="overlay" use:overlayOut>
-		<div class="cell" />
-		<div class="cell" />
-		<div class="cell" />
-		<div class="cell" />
-		<p>This is loading text</p>
-	</div>
-	<!-- <svg class="overlay" viewBox="0 0 360 500" use:overlayOut>
-		<rect width="360" height="200" />
-		<rect width="360" height="200" y="200" />
-		<rect width="360" height="200" y="400" />
-		<rect width="360" height="200" y="600" />
-	</svg> -->
-	<slot />
-{/key}
+<!-- {#key currentUrl} -->
+<div class="overlay" use:overlayOut>
+	<div class="cell" />
+	<div class="cell" />
+	<div class="cell" />
+	<div class="cell" />
+	<p>This is loading {currentUrl || 'home'}</p>
+</div>
+<!-- {/key} -->
+
+<slot />
 
 <style lang="scss">
 	.overlay {
@@ -38,10 +28,12 @@
 		display: grid;
 		overflow: hidden;
 		visibility: hidden;
+
 		& > * {
-			background-color: var(--clr-primary);
+			background-color: var(--clr-background);
 		}
 	}
+
 	p {
 		position: absolute;
 		place-self: center;
