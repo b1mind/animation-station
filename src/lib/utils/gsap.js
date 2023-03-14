@@ -29,45 +29,26 @@ export function overlayOut(node) {
 			stagger: 0.1
 		})
 		.from(text, { duration: 0.25, opacity: 0 }, '>-0.2')
-		.addPause('>')
 		.addLabel('after')
 		.to(text, { duration: 0.25, opacity: 0 })
 		.to(children, { x: '100%', stagger: 0.1 })
 		.set(node, { visibility: 'hidden' })
 
-	function checkState() {
-		this.play()
-	}
-
 	beforeNavigate(() => {
 		gsap.set(node, { visibility: 'visible' })
 		console.log('before')
 		beforeTl.restart()
+		beforeTl.addPause('after')
 	})
 
-	// const after = gsap.timeline({ paused: true })
 	afterNavigate(() => {
 		console.log('after')
-		beforeTl.paused() ? beforeTl.play() : beforeTl.play('after')
+		beforeTl.removePause('after')
+		beforeTl.play()
 	})
 
 	onDestroy(() => {
 		console.log('need destroyed')
 		beforeTl.kill()
 	})
-
-	// const tl = gsap.timeline({
-	// 	defaults: {
-	// 		duration: duration / 2,
-	// 		ease: 'linear'
-	// 	}
-	// })
-
-	// tl.from(children, {
-	// 	x: '-100%',
-	// 	stagger: 0.1
-	// })
-	// tl.from(text, { duration: 0.5, opacity: 0 }, '>-0.2')
-	// tl.to(text, { duration: 0.5, opacity: 0 })
-	// tl.to(children, { x: '100%', stagger: 0.1 })
 }
