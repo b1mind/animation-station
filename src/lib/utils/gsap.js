@@ -15,9 +15,8 @@ export function overlayOut(node) {
 
 	duration < 1 ? (duration = +1) : duration
 	console.log(duration)
-	gsap.set(node, { visibility: 'visible' })
 
-	const before = gsap
+	const beforeTl = gsap
 		.timeline({
 			paused: true,
 			defaults: {
@@ -30,24 +29,31 @@ export function overlayOut(node) {
 			stagger: 0.1
 		})
 		.from(text, { duration: 0.25, opacity: 0 }, '>-0.2')
-		.pause()
+		.addPause('>')
+		.addLabel('after')
 		.to(text, { duration: 0.25, opacity: 0 })
 		.to(children, { x: '100%', stagger: 0.1 })
+		.set(node, { visibility: 'hidden' })
+
+	function checkState() {
+		this.play()
+	}
 
 	beforeNavigate(() => {
+		gsap.set(node, { visibility: 'visible' })
 		console.log('before')
-		before.restart()
+		beforeTl.restart()
 	})
 
 	// const after = gsap.timeline({ paused: true })
 	afterNavigate(() => {
 		console.log('after')
-		before.resume()
+		beforeTl.paused() ? beforeTl.play() : beforeTl.play('after')
 	})
 
 	onDestroy(() => {
 		console.log('need destroyed')
-		before.kill()
+		beforeTl.kill()
 	})
 
 	// const tl = gsap.timeline({
