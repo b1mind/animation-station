@@ -1,6 +1,7 @@
-import { gsap } from 'gsap'
 import { afterUpdate, beforeUpdate, onDestroy } from 'svelte'
 import { beforeNavigate, afterNavigate } from '$app/navigation'
+
+import { gsap } from 'gsap'
 
 export function overlayIn(node) {
 	const children = node.children
@@ -44,16 +45,17 @@ export function overlayOut(node) {
 		before.resume()
 	})
 
-	const tl = gsap.timeline({
-		defaults: {
-			duration: duration / 2,
-			ease: 'linear'
-		}
-	})
-
 	onDestroy(() => {
 		console.log('need destroyed')
+		before.kill()
 	})
+
+	// const tl = gsap.timeline({
+	// 	defaults: {
+	// 		duration: duration / 2,
+	// 		ease: 'linear'
+	// 	}
+	// })
 
 	// tl.from(children, {
 	// 	x: '-100%',
