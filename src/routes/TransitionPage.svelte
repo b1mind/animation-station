@@ -28,6 +28,7 @@
 		display: grid;
 		overflow: hidden;
 		visibility: hidden;
+		//pointer-events: none;
 
 		& > * {
 			background-color: var(--clr-background);

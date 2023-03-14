@@ -37,7 +37,6 @@
 <style lang="scss">
 	//wish we had subgrid... somedayTM for now inherit
 	main {
-		position: relative;
 		grid-column: 1 / 4;
 		display: grid;
 		grid-template-columns: inherit;
