@@ -1,25 +1,23 @@
 <script>
-	import { overlayIn, overlayOut } from '$lib/utils/gsap.js'
+	import { overlayIn, overlayStagger } from '$lib/utils/gsap.js'
 	import { beforeNavigate, afterNavigate } from '$app/navigation'
 
 	let currentUrl
-
-	beforeNavigate((e) => {
-		currentUrl = e?.to?.url.pathname
-	})
 </script>
 
 <!-- {#key currentUrl} -->
-<div class="overlay" use:overlayOut>
+<div class="overlay" use:overlayStagger>
 	<div class="cell" />
 	<div class="cell" />
 	<div class="cell" />
 	<div class="cell" />
-	<p>This is loading {currentUrl || 'home'}</p>
+	<p>loading</p>
 </div>
 <!-- {/key} -->
 
-<slot />
+<div class="noWrap">
+	<slot />
+</div>
 
 <style lang="scss">
 	.overlay {
@@ -31,12 +29,16 @@
 		//pointer-events: none;
 
 		& > * {
-			background-color: var(--clr-background);
+			background-color: var(--clr-primary-dark);
 		}
 	}
 
 	p {
 		position: absolute;
 		place-self: center;
+	}
+
+	.noWrap {
+		display: contents;
 	}
 </style>

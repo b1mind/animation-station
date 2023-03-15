@@ -1,13 +1,15 @@
 :root {
 	//tokens
 	//todo hsl token colors so you can split opacity easier
-	--purple-0: blueviolet;
+	--purple-0: #2c254b;
 	--purple-1: #896ffb;
 	--black-0: #121212;
 	--black-1: #1b1b1b;
+	--black-2: #3f3f3f;
 	--white-0: #fafafa;
 
 	//contextual tokens
+	--clr-background-light: var(--black-2);
 	--clr-background: var(--black-1);
 	--clr-background-dark: var(--black-0);
 	--clr-primary: var(--purple-1);

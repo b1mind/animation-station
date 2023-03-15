@@ -4,7 +4,7 @@ export async function load({ params }) {
 	const longFetch = new Promise((resolve, reject) => {
 		setTimeout(() => {
 			resolve('Long fetch completed successfully.')
-		}, 5000)
+		}, 1000)
 	})
 	await longFetch
 

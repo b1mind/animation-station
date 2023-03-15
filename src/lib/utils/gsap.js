@@ -8,22 +8,23 @@ export function overlayIn(node) {
 	gsap.from(children, { duration: 1, x: '-100%', stagger: 0.3, ease: 'linear' })
 }
 
-export function overlayOut(node) {
+export function overlayStagger(node) {
 	let duration = node.clientWidth / 1000
 	const children = node.querySelectorAll('.cell')
 	const text = node.querySelector('p')
 
-	duration < 1 ? (duration = +1) : duration
-	console.log(duration)
+	duration < 1 ? (duration = 1) : duration
 
 	const beforeTl = gsap
 		.timeline({
 			paused: true,
 			defaults: {
-				duration: duration / 2,
+				duration: duration * 0.2,
 				ease: 'linear'
 			}
 		})
+		.addLabel('start')
+		.set(node, { visibility: 'visible' })
 		.from(children, {
 			x: '-100%',
 			stagger: 0.1
@@ -35,7 +36,6 @@ export function overlayOut(node) {
 		.set(node, { visibility: 'hidden' })
 
 	beforeNavigate(() => {
-		gsap.set(node, { visibility: 'visible' })
 		console.log('before')
 		beforeTl.restart()
 		beforeTl.addPause('after')
