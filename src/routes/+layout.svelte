@@ -3,6 +3,7 @@
 
 	import Nav from './Nav.svelte'
 	import Footer from './Footer.svelte'
+	import TransitionPage from './TransitionPage.svelte'
 
 	import '$lib/scss/global.scss'
 
@@ -22,7 +23,10 @@
 
 	<main>
 		<!-- {#key currentUrl} -->
-		<slot />
+		<TransitionPage>
+			<slot />
+		</TransitionPage>
+
 		<!-- {/key} -->
 	</main>
 
