@@ -7,9 +7,9 @@
 	<a href="/posts/another-thing">post2</a>
 </nav>
 
-<SvgTransition>
-	<slot />
-</SvgTransition>
+<SvgTransition />
+
+<slot />
 
 <style lang="scss">
 	nav {

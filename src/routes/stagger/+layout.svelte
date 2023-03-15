@@ -7,9 +7,9 @@
 	<a href="/stagger/another-thing">thing2</a>
 </nav>
 
-<TransitionPage>
-	<slot />
-</TransitionPage>
+<TransitionPage />
+
+<slot />
 
 <style lang="scss">
 	nav {

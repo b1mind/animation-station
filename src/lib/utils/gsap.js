@@ -58,19 +58,19 @@ export function overlayStagger(node) {
 
 	beforeNavigate((e) => {
 		console.log('beforeNav')
-		// if (canTransition(e)) {
-		console.log('working?')
-		beforeTl.play('start')
-		beforeTl.addPause('after')
-		// }
+		if (canTransition(e)) {
+			console.log('working?')
+			beforeTl.play('start')
+			beforeTl.addPause('after')
+		}
 	})
 
 	afterNavigate((e) => {
 		console.log('afterNav')
-		// if (canTransition(e)) {
-		beforeTl.removePause('after')
-		beforeTl.play('after')
-		// }
+		if (canTransition(e)) {
+			beforeTl.removePause('after')
+			beforeTl.play('after')
+		}
 	})
 
 	onDestroy(() => {

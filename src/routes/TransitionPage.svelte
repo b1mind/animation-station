@@ -1,8 +1,9 @@
 <script>
 	import { overlayStagger } from '$lib/utils/gsap.js'
 	import { beforeNavigate, afterNavigate } from '$app/navigation'
+	import { page } from '$app/stores'
 
-	let currentUrl
+	// $: currentUrl = $page.url.pathname
 </script>
 
 <!-- {#key currentUrl} -->
