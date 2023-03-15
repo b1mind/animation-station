@@ -45,7 +45,7 @@ export function overlayStagger(node) {
 
 	beforeNavigate((e) => {
 		console.log('beforeNav')
-		if (e?.type === 'link') {
+		if (e?.type === 'link' && e?.to.route.id !== e?.from.route.id) {
 			beforeTl.restart()
 			beforeTl.addPause('after')
 		}
