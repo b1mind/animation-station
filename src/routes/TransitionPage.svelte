@@ -1,5 +1,5 @@
 <script>
-	import { overlayIn, overlayStagger } from '$lib/utils/gsap.js'
+	import { fadeInOut, overlayStagger } from '$lib/utils/gsap.js'
 	import { beforeNavigate, afterNavigate } from '$app/navigation'
 
 	let currentUrl
