@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 export function overlayStagger(node) {
 	let duration = node.clientWidth / 1000
 	const children = node.querySelectorAll('.cell')
-	const text = node.querySelector('svg')
+	const text = node.querySelector('p')
 	const sibling = node.nextElementSibling
 	console.dir(node)
 
@@ -16,7 +16,7 @@ export function overlayStagger(node) {
 		.timeline({
 			paused: true,
 			defaults: {
-				duration: duration * 0.15,
+				duration: duration * 0.2,
 				ease: 'linear'
 			}
 		})
@@ -58,7 +58,7 @@ export function overlayStagger(node) {
 
 	beforeNavigate((e) => {
 		console.log('beforeNav')
-		if (canTransition(e)) {
+		if (e?.type === 'link' && e?.to.route.id !== e?.from.route.id) {
 			beforeTl.restart()
 			beforeTl.addPause('after')
 		}
@@ -66,9 +66,9 @@ export function overlayStagger(node) {
 
 	afterNavigate((e) => {
 		console.log('afterNav')
-		if (canTransition(e)) {
+		if (e?.type === 'link') {
 			beforeTl.removePause('after')
-			beforeTl.play('after')
+			beforeTl.resume()
 		}
 	})
 

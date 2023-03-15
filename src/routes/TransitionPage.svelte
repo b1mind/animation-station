@@ -38,7 +38,7 @@
 		background-color: var(--clr-primary-dark);
 	}
 
-	svg {
+	p {
 		position: absolute;
 		place-self: center;
 		width: 100px;
