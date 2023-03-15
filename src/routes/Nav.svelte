@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-		<li><a href="/about">About</a></li>
+		<li><a href="/stagger/main-title">Stagger</a></li>
 		<li><a href="/posts/slug-title">Posts</a></li>
 	</ul>
 </nav>

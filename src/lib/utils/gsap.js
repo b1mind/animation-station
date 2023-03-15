@@ -1,18 +1,7 @@
-import { afterUpdate, beforeUpdate, onDestroy } from 'svelte'
+import { onDestroy } from 'svelte'
 import { beforeNavigate, afterNavigate } from '$app/navigation'
 
 import { gsap } from 'gsap'
-
-export function fadeInOut(node) {
-	beforeUpdate(() => {
-		console.log('beforeUpdate')
-		gsap.from(node, { opacity: 0 })
-	})
-	afterUpdate(() => {
-		console.log('afterUpdate')
-		gsap.from(node, { opacity: 1 })
-	})
-}
 
 export function overlayStagger(node) {
 	let duration = node.clientWidth / 1000
@@ -34,33 +23,54 @@ export function overlayStagger(node) {
 		.addLabel('start')
 		.set(node, { visibility: 'visible' })
 		.set(sibling, { visibility: 'hidden' })
-		.from(children, { x: '-100%', stagger: 0.1 }, 0)
+		.from(
+			children,
+			{
+				x: '-100%',
+				stagger: {
+					each: 0.1,
+					from: 'center'
+				}
+			},
+			0
+		)
+		.from(text, { duration: 0.25, opacity: 0 }, '>-0.2')
 
 		.addLabel('after')
-		.from(text, { duration: 0.25, opacity: 0, yoyo: true }, '>-0.2')
 		.set(sibling, { visibility: 'visible' })
 		.to(text, { duration: 0.25, opacity: 0 }, '<')
-		.to(children, { x: '100%', stagger: 0.1 }, 'after')
+		.to(
+			children,
+			{
+				x: '100%',
+				stagger: {
+					each: 0.1,
+					from: 'edges'
+				}
+			},
+			'after'
+		)
 		.set(node, { visibility: 'hidden' })
 
 	function canTransition(e) {
-		if (e?.type === 'link' && e?.to.route.id !== e?.from.route.id) return true
+		if (e?.type === 'link' && e?.to.url.pathname !== e?.from.url.pathname) return true
 	}
 
 	beforeNavigate((e) => {
 		console.log('beforeNav')
-		if (canTransition(e)) {
-			beforeTl.restart()
-			beforeTl.addPause('after')
-		}
+		// if (canTransition(e)) {
+		console.log('working?')
+		beforeTl.play('start')
+		beforeTl.addPause('after')
+		// }
 	})
 
 	afterNavigate((e) => {
 		console.log('afterNav')
-		if (canTransition(e)) {
-			beforeTl.removePause('after')
-			beforeTl.resume()
-		}
+		// if (canTransition(e)) {
+		beforeTl.removePause('after')
+		beforeTl.play('after')
+		// }
 	})
 
 	onDestroy(() => {
