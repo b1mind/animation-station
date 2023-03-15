@@ -53,15 +53,12 @@ export function overlayStagger(node) {
 		.set(node, { visibility: 'hidden' })
 
 	function canTransition(e) {
-		console.log('to', e?.to?.url.pathname)
-		console.log('from', e?.from?.url.pathname)
 		if (e?.type === 'link' && e?.to?.url.pathname !== e?.from?.url.pathname) return true
 	}
 
 	beforeNavigate((e) => {
 		console.log('beforeNav')
 		if (canTransition(e)) {
-			console.log('working?')
 			beforeTl.restart()
 			beforeTl.addPause('after')
 		}
