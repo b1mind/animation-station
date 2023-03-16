@@ -7,12 +7,11 @@
 
 	onMount(() => {
 		const parent = document.querySelector('.overlay')
-		let duration = parent.clientWidth / 1000
 		const children = parent.querySelectorAll('.cell')
 		const text = parent.querySelector('svg')
 		const sibling = parent.nextElementSibling
-		console.dir(parent)
 
+		let duration = parent.clientWidth / 1000
 		duration < 1 ? (duration = 1) : duration
 
 		beforeTl = gsap
