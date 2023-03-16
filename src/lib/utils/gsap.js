@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 export function overlayStagger(node) {
 	let duration = node.clientWidth / 1000
 	const children = node.querySelectorAll('.cell')
-	const text = node.querySelector('p')
+	const text = node.querySelector('svg')
 	const sibling = node.nextElementSibling
 	console.dir(node)
 
