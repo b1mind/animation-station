@@ -1,4 +1,3 @@
-import { onDestroy } from 'svelte'
 import { beforeNavigate, afterNavigate } from '$app/navigation'
 
 import { gsap } from 'gsap'
@@ -72,8 +71,10 @@ export function overlayStagger(node) {
 		}
 	})
 
-	onDestroy(() => {
-		console.log('need destroyed')
-		beforeTl.kill()
-	})
+	return {
+		destroy() {
+			console.log('need destroyed')
+			beforeTl.kill()
+		}
+	}
 }
