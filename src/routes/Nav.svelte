@@ -1,7 +1,7 @@
 <nav>
 	<ul>
 		<li><a href="/stagger/main-title">Stagger</a></li>
-		<li><a href="/posts/slug-title">Posts</a></li>
+		<li><a href="/posts/1">Posts</a></li>
 	</ul>
 </nav>
 

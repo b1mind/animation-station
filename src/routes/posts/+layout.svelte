@@ -4,16 +4,19 @@
 </script>
 
 <nav>
-	<a href="/posts/test-post">Test</a>
-	<a href="/posts/another-post">Another</a>
+	<a href="/posts/1">Test</a>
+	<a href="/posts/2">Another</a>
 </nav>
 
-<KeyTransition key={$page.url}>
-	<slot />
-</KeyTransition>
+<div>
+	<KeyTransition key={$page.url}>
+		<slot />
+	</KeyTransition>
+</div>
 
 <style lang="scss">
-	nav {
+	nav,
+	div {
 		grid-column: content;
 	}
 </style>

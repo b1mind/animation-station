@@ -1,17 +1,16 @@
 <script>
 	export let data
+	console.log(data)
 </script>
 
 <hgroup>
-	<h1>{data.slug}</h1>
+	<h1>Post: {data.id}</h1>
 </hgroup>
 
 <ul>
-	{#each data.data.posts as posts}
-		<li>
-			{posts.title}
-		</li>
-	{/each}
+	<li>
+		{data.data.title}
+	</li>
 </ul>
 
 <style lang="scss">

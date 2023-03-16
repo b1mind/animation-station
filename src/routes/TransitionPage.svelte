@@ -1,5 +1,5 @@
 <script>
-	import { overlayStagger } from '$lib/utils/gsap.js'
+	import { overlayStagger } from '$lib/utils/staggerMe.js'
 	import { beforeNavigate, afterNavigate } from '$app/navigation'
 	import { page } from '$app/stores'
 

@@ -1,80 +1,59 @@
-import { beforeNavigate, afterNavigate } from '$app/navigation'
-
 import { gsap } from 'gsap'
+import { afterUpdate, beforeUpdate, onDestroy, onMount } from 'svelte'
 
-export function overlayStagger(node) {
-	let duration = node.clientWidth / 1000
-	const children = node.querySelectorAll('.cell')
-	const text = node.querySelector('svg')
-	const sibling = node.nextElementSibling
-	console.dir(node)
+let duration = 0.5
 
-	duration < 1 ? (duration = 1) : duration
-
-	const beforeTl = gsap
-		.timeline({
-			paused: true,
-			defaults: {
-				duration: duration * 0.2,
-				ease: 'linear'
-			}
-		})
-		.addLabel('start')
-		.set(node, { visibility: 'visible' })
-		.set(sibling, { visibility: 'hidden' })
-		.from(
-			children,
-			{
-				x: '-100%',
-				stagger: {
-					each: 0.1,
-					from: 'center'
-				}
-			},
-			0
+export function growMe(node) {
+	const tl = gsap
+		.timeline({})
+		.fromTo(
+			node.firstChild,
+			{ duration, scale: 2, transformOrigin: 'center' },
+			{ scale: 0 }
 		)
-		.from(text, { duration: 0.25, opacity: 0 }, '>-0.2')
 
-		.addLabel('after')
-		.set(sibling, { visibility: 'visible' })
-		.to(text, { duration: 0.25, opacity: 0 }, '<')
-		.to(
-			children,
-			{
-				x: '100%',
-				stagger: {
-					each: 0.1,
-					from: 'edges'
-				}
-			},
-			'after'
-		)
-		.set(node, { visibility: 'hidden' })
-
-	function canTransition(e) {
-		if (e?.type === 'link' && e?.to?.url.pathname !== e?.from?.url.pathname) return true
-	}
-
-	beforeNavigate((e) => {
-		console.log('beforeNav')
-		if (canTransition(e)) {
-			beforeTl.restart()
-			beforeTl.addPause('after')
-		}
+	onMount(() => {
+		console.log('use:growMe mounted')
 	})
 
-	afterNavigate((e) => {
-		console.log('afterNav')
-		if (canTransition(e)) {
-			beforeTl.removePause('after')
-			beforeTl.resume()
-		}
+	beforeUpdate(() => {
+		console.log('beforeUpdate')
+	})
+
+	afterUpdate(() => {
+		console.log('afterUpdate')
+	})
+
+	onDestroy(() => {
+		console.log('onDestroy')
 	})
 
 	return {
-		destroy() {
-			console.log('need destroyed')
-			beforeTl.kill()
+		duration: duration * 1000,
+		tick: (t) => {
+			tl.progress(t)
+		}
+	}
+}
+
+export function slideIn(node) {
+	const tl = gsap.timeline({}).from(node, { x: '100%' })
+
+	return {
+		duration: duration * 1000,
+		tick: (t) => {
+			tl.progress(t)
+		}
+	}
+}
+
+export function slideOut(node) {
+	const tl = gsap.timeline({}).to(node, { autoAlpha: 0 })
+
+	return {
+		duration: duration * 1000,
+		tick: (t, u) => {
+			tl.progress(u)
 		}
 	}
 }

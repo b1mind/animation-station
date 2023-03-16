@@ -1,5 +1,5 @@
 <script>
-	import { growMe, slideIn, slideOut } from '$lib/utils/growMe.js'
+	import { slideIn, slideOut } from '$lib/utils/gsap.js'
 	export let key
 </script>
 

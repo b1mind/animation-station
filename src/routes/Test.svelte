@@ -9,7 +9,7 @@
 		const parent = document.querySelector('.overlay')
 		const children = parent.querySelectorAll('.cell')
 		const text = parent.querySelector('svg')
-		const sibling = parent.nextElementSibling
+		// const sibling = parent.nextElementSibling
 
 		let duration = parent.clientWidth / 1000
 		duration < 1 ? (duration = 1) : duration
@@ -24,7 +24,7 @@
 			})
 			.addLabel('start')
 			.set(parent, { visibility: 'visible' })
-			.set(sibling, { visibility: 'hidden' })
+			// .set(sibling, { visibility: 'hidden' })
 			.from(
 				children,
 				{
@@ -39,8 +39,8 @@
 			.from(text, { duration: 0.25, opacity: 0 }, '>-0.2')
 
 			.addLabel('after')
-			.set(sibling, { visibility: 'visible' })
-			.to(text, { duration: 0.25, opacity: 0 }, '<')
+			// .set(sibling, { visibility: 'visible' })
+			.to(text, { duration: 0.25, opacity: 0 }, 'after')
 			.to(
 				children,
 				{
@@ -77,6 +77,7 @@
 
 	onDestroy(() => {
 		console.log('need destroyed')
+		beforeTl.kill()
 	})
 
 	//$: currentUrl = $page.url.pathname
