@@ -5,13 +5,12 @@
 
 	let beforeTl
 
-	onMount(() => {
-		const parent = document.querySelector('.overlay')
-		const children = parent.querySelectorAll('.cell')
-		const text = parent.querySelector('svg')
+	function staggerMe(node) {
+		const children = node.querySelectorAll('.cell')
+		const text = node.querySelector('svg')
 		// const sibling = parent.nextElementSibling
 
-		let duration = parent.clientWidth / 1000
+		let duration = node.clientWidth / 1000
 		duration < 1 ? (duration = 1) : duration
 
 		beforeTl = gsap
@@ -23,7 +22,7 @@
 				}
 			})
 			.addLabel('start')
-			.set(parent, { visibility: 'visible' })
+			.set(node, { visibility: 'visible' })
 			// .set(sibling, { visibility: 'hidden' })
 			.from(
 				children,
@@ -52,8 +51,15 @@
 				},
 				'after'
 			)
-			.set(parent, { visibility: 'hidden' })
-	})
+			.set(node, { visibility: 'hidden' })
+
+		return {
+			destroy() {
+				console.log('use destroy')
+				beforeTl.kill()
+			}
+		}
+	}
 
 	function canTransition(e) {
 		if (e?.type === 'link' && e?.to?.url.pathname !== e?.from?.url.pathname) return true
@@ -75,15 +81,10 @@
 		}
 	})
 
-	onDestroy(() => {
-		console.log('need destroyed')
-		beforeTl.kill()
-	})
-
 	//$: currentUrl = $page.url.pathname
 </script>
 
-<div class="overlay">
+<div class="overlay" use:staggerMe>
 	<div class="cell" />
 	<div class="cell" />
 	<div class="cell" />
@@ -121,6 +122,16 @@
 		width: 100px;
 		height: 100px;
 		color: var(--clr-background-dark);
+	}
+
+	@keyframes blink {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
 	}
 
 	.noWrap {
