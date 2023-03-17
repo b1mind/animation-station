@@ -1,21 +1,25 @@
 <script>
+	import KeyTransition from '../KeyTransition.svelte'
 	export let data
-	console.log(data)
 </script>
 
-<hgroup>
-	<h1>Post: {data.id}</h1>
-</hgroup>
+<article>
+	<KeyTransition key={data}>
+		<hgroup>
+			<h1>Post: {data.id}</h1>
+		</hgroup>
 
-<ul>
-	<li>
-		{data.data.title}
-	</li>
-</ul>
+		<ul>
+			<li>
+				{data.data.title}
+			</li>
+		</ul>
+	</KeyTransition>
+</article>
 
 <style lang="scss">
-	hgroup,
-	ul {
+	article {
 		grid-column: content;
+		display: grid;
 	}
 </style>

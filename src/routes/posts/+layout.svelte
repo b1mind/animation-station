@@ -1,6 +1,4 @@
 <script>
-	import KeyTransition from './KeyTransition.svelte'
-	import { page } from '$app/stores'
 </script>
 
 <nav>
@@ -8,15 +6,11 @@
 	<a href="/posts/2">Another</a>
 </nav>
 
-<div>
-	<KeyTransition key={$page.url}>
-		<slot />
-	</KeyTransition>
-</div>
+<slot />
 
 <style lang="scss">
-	nav,
-	div {
+	nav {
 		grid-column: content;
+		grid-row: 1 / 2;
 	}
 </style>

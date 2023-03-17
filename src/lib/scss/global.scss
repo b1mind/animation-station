@@ -76,6 +76,7 @@ input {
 
 	grid-template-rows: auto 1fr auto;
 	grid-template-areas: '. content .';
+	overflow-x: hidden;
 
 	//todo util for this and full/mid/sml look at example
 	& > * {

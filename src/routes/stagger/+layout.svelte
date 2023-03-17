@@ -1,5 +1,5 @@
 <script>
-	import Test from '../Test.svelte'
+	import PageTransition from '../PageTransition.svelte'
 </script>
 
 <nav>
@@ -7,9 +7,9 @@
 	<a href="/stagger/some-other-title">Link1</a>
 </nav>
 
-<Test>
+<PageTransition>
 	<slot />
-</Test>
+</PageTransition>
 
 <style lang="scss">
 	nav {

@@ -55,6 +55,8 @@ export function overlayStagger(node) {
 		if (e?.type === 'link' && e?.to?.url.pathname !== e?.from?.url.pathname) return true
 	}
 
+	// these don't get destroyed, so only work top level?
+	// look into use:actions not destroying lifeCycle hooks
 	beforeNavigate((e) => {
 		console.log('beforeNav')
 		if (canTransition(e)) {
