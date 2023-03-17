@@ -55,7 +55,7 @@
 
 		return {
 			destroy() {
-				console.log('use destroy')
+				console.log('use:stagger destroy')
 				beforeTl.kill()
 			}
 		}
@@ -122,15 +122,18 @@
 		width: 100px;
 		height: 100px;
 		color: var(--clr-background-dark);
+		animation: blink 1s infinite forwards;
 	}
 
 	@keyframes blink {
-		from {
+		0% {
 			opacity: 0;
+			transform: rotate(180deg);
 		}
 
-		to {
+		100% {
 			opacity: 1;
+			transform: rotate(0);
 		}
 	}
 
