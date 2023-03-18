@@ -1,10 +1,12 @@
 <script>
-	import { slide } from '$lib/utils/gsap.js'
+	// import { slide } from '$lib/utils/gsap.js'
+	import { fly } from 'svelte/transition'
 	export let key
+	let duration = 1000
 </script>
 
 {#key key}
-	<div transition:slide>
+	<div in:fly={{ duration, x: 500 }} out:fly={{ duration, x: 500 }}>
 		<slot />
 	</div>
 {/key}

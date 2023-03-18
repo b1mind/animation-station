@@ -1,14 +1,15 @@
 <script>
 	import SlotTransition from '$lib/SlotTransition.svelte'
-	import { page } from '$app/stores'
+	export let data
 </script>
 
 <nav>
 	<a href="/slot/test">Test</a>
 	<a href="/slot/page">Page</a>
+	<!-- {url} -->
 </nav>
 
-<SlotTransition key={$page.data}>
+<SlotTransition key={data.url}>
 	<slot />
 </SlotTransition>
 

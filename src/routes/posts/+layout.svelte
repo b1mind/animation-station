@@ -1,6 +1,6 @@
 <script>
 	import KeyTransition from '$lib/KeyTransition.svelte'
-	import { page } from '$app/stores'
+	export let data
 </script>
 
 <nav>
@@ -8,7 +8,7 @@
 	<a href="/posts/2">Another</a>
 </nav>
 
-<KeyTransition key={$page.data}>
+<KeyTransition key={data.url}>
 	<slot />
 </KeyTransition>
 
