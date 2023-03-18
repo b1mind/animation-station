@@ -6,8 +6,8 @@
 
 <nav>
 	<NavStagger>
-		<a href="/posts/1">Test</a>
-		<a href="/posts/2">Another</a>
+		<a href="/posts/1">Post1</a>
+		<a href="/posts/2">Post2</a>
 	</NavStagger>
 </nav>
 
@@ -20,5 +20,6 @@
 	nav {
 		grid-column: content;
 		grid-row: 1 / 2;
+		overflow: hidden;
 	}
 </style>

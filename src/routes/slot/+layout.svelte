@@ -20,5 +20,6 @@
 	nav {
 		grid-column: content;
 		grid-row: 1 / 2;
+		overflow: hidden;
 	}
 </style>

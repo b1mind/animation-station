@@ -65,7 +65,7 @@ export function slideOut(node) {
 
 	const tl = gsap
 		.timeline({})
-		.set(node.firstChild, { position: 'absolute' })
+		// .set(node.firstChild, { position: 'absolute' })
 		.to(heading, { y: '100%' })
 		.to(node.firstChild, { autoAlpha: 0 }, '<')
 

@@ -1,6 +1,4 @@
 <script>
-	// import { page } from '$app/stores'
-
 	import Nav from './Nav.svelte'
 	import Footer from './Footer.svelte'
 	// import TransitionPage from './TransitionPage.svelte'
@@ -20,9 +18,7 @@
 	</header>
 
 	<main>
-		<!-- {#key $page.url.pathname} -->
 		<slot />
-		<!-- {/key} -->
 	</main>
 
 	<footer>
@@ -33,7 +29,7 @@
 <style lang="scss">
 	//wish we had subgrid... somedayTM for now inherit
 	main {
-		position: relative;
+		// position: relative;
 		grid-column: 1 / 4;
 		display: grid;
 		grid-template-columns: inherit;
