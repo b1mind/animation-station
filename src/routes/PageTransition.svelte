@@ -54,6 +54,9 @@
 			.set(node, { visibility: 'hidden' })
 
 		return {
+			// tick: (t) => {
+			// 	console.log(t)
+			// },
 			destroy() {
 				console.log('use:stagger destroy')
 				beforeTl.kill()

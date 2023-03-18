@@ -7,7 +7,7 @@ export function growMe(node) {
 		.timeline({})
 		.fromTo(
 			node.firstChild,
-			{ duration, scale: 2, transformOrigin: 'center' },
+			{ duration, scale: 2, transformOrigin: '50%' },
 			{ scale: 0 }
 		)
 
@@ -32,6 +32,10 @@ export function growMe(node) {
 		duration: duration * 1000,
 		tick: (t) => {
 			tl.progress(t)
+		},
+		destroy() {
+			console.log('action destroyed')
+			tl.kill()
 		}
 	}
 }

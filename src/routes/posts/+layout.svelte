@@ -1,11 +1,14 @@
 <script>
 	import KeyTransition from '$lib/KeyTransition.svelte'
+	import NavStagger from '../../lib/NavStagger.svelte'
 	export let data
 </script>
 
 <nav>
-	<a href="/posts/1">Test</a>
-	<a href="/posts/2">Another</a>
+	<NavStagger>
+		<a href="/posts/1">Test</a>
+		<a href="/posts/2">Another</a>
+	</NavStagger>
 </nav>
 
 <KeyTransition key={data.url}>
