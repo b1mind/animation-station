@@ -8,3 +8,10 @@
 		<slot />
 	</div>
 {/key}
+
+<style lang="scss">
+	div {
+		// grid-column: content;
+		display: contents;
+	}
+</style>

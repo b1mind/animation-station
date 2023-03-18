@@ -2,7 +2,7 @@
 	import PageTransition from '../PageTransition.svelte'
 </script>
 
-<nav>
+<nav data-sveltekit-preload-data="hover">
 	<a href="/stagger/some-title">Link1</a>
 	<a href="/stagger/some-other-title">Link1</a>
 </nav>

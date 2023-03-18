@@ -1,16 +1,16 @@
 <script>
-	import KeyTransition from '$lib/KeyTransition.svelte'
+	import SlotTransition from '$lib/SlotTransition.svelte'
 	import { page } from '$app/stores'
 </script>
 
 <nav>
-	<a href="/posts/1">Test</a>
-	<a href="/posts/2">Another</a>
+	<a href="/slot/test">Test</a>
+	<a href="/slot/page">Page</a>
 </nav>
 
-<KeyTransition key={$page.data}>
+<SlotTransition key={$page.data}>
 	<slot />
-</KeyTransition>
+</SlotTransition>
 
 <!--  -->
 <style lang="scss">

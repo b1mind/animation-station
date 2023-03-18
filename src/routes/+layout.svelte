@@ -6,8 +6,6 @@
 	// import TransitionPage from './TransitionPage.svelte'
 
 	import '$lib/scss/global.scss'
-
-	// $: currentUrl = $page.url
 </script>
 
 <svelte:head>
@@ -22,7 +20,7 @@
 	</header>
 
 	<main>
-		<!-- {#key currentUrl} -->
+		<!-- {#key $page.url.pathname} -->
 		<slot />
 		<!-- {/key} -->
 	</main>
@@ -35,6 +33,7 @@
 <style lang="scss">
 	//wish we had subgrid... somedayTM for now inherit
 	main {
+		position: relative;
 		grid-column: 1 / 4;
 		display: grid;
 		grid-template-columns: inherit;
