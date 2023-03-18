@@ -34,7 +34,8 @@
 		display: grid;
 		grid-template-columns: inherit;
 		grid-template-areas: inherit;
-		grid-template-rows: auto 1fr;
+		// grid-template-rows: auto 1fr;
+		align-content: start;
 		background-color: var(--clr-background-dark);
 	}
 

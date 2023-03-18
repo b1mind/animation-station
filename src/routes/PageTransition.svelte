@@ -112,6 +112,7 @@
 		display: grid;
 		overflow: hidden;
 		visibility: hidden;
+		z-index: 9696;
 		//pointer-events: none;
 	}
 
